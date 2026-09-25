@@ -1,46 +1,76 @@
 /* ==========================================================================
-   LEM COFFEE HÀ NỘI — DESIGN SYSTEM & STYLESHEET
-   Strict Color Isolation: Cream Base + Single Accent Per Section
-   NEVER MIX Pink & Yellow inside the same component / section.
+   COFFEE MÈO HẢI PHÒNG — JAPANESE EDITORIAL / WARM CAT CAFÉ DESIGN SYSTEM
+   Inspired by: SMA "A Kind Heart" (Warm, soft, Japanese editorial, playful warmth)
+   
+   COLOR PALETTE:
+   - Main Coral Pink:     #EE6267 (Primary CTA, key headings, active chips)
+   - Soft Blush Pink:     #EFA5AE (Secondary accents, badges, cat details)
+   - Pale Blush Bg:       #FDF2F4 (Atmospheric background for Who & FAQ)
+   - Dusty Dark Rose:     #99524E (Grounded contrast, icons, outlines, typography)
+   - Butter Yellow:       #F7DC83 / #FDF4D4 (Soft sunlight atmospheric washes)
+   - Light Cream:         #FFF8EA (Main canvas / cream book paper feel)
+   - Warm White:          #FFFCF5 (Content cards, lead form card)
+   - Dark Cocoa:          #49383A (Warm ink body copy, non-harsh text)
+   - Deep Navy:           #102331 (Footer, grounding anchors)
+   
+   COLOR RULES:
+   - NO pink-to-yellow gradients.
+   - NO mixing pink and yellow inside buttons or components.
+   - Butter yellow = soft atmospheric background wash.
+   - Coral pink = unmissable high-converting CTA & key accents.
+   - Dusty dark rose = tactile outlines, decorative doodles & contrast.
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
-   1. DESIGN TOKENS & ROOT VARIABLES
+   1. DESIGN TOKENS & CSS VARIABLES
    -------------------------------------------------------------------------- */
 :root {
-  /* Primary Pastel Pink Palette (Pink Sections) */
-  --pastel-pink: #F8D8E4;
-  --soft-pink: #F4BFD2;
-  --pink-btn: #EFAFC5;
-  --pink-btn-hover: #E49BB4;
-  --deep-pink: #D9739A;
-  --pink-card-bg: #FFF5F8;
-  --pink-border: #F6CDDB;
-  
-  /* Primary Pastel Yellow Palette (Yellow Sections) */
-  --pastel-yellow: #FFE8A3;
-  --pastel-yellow-light: #FFF0BE;
-  --yellow-btn: #FFE29A;
-  --yellow-btn-hover: #F9D67E;
-  --warm-yellow: #E8AF35;
-  --yellow-card-bg: #FFFDF5;
-  --yellow-border: #FCE6A6;
+  /* Main Coral Pink */
+  --coral-pink: #EE6267;
+  --coral-pink-hover: #E44E53;
+  --coral-pink-active: #D43940;
+  --coral-pink-light: #FDECEE;
+  --coral-pink-shadow: rgba(238, 98, 103, 0.35);
 
-  /* Neutral Palette */
-  --cream: #FFF9F2;
-  --warm-white: #FFFCF8;
+  /* Soft Blush Pink */
+  --soft-blush: #EFA5AE;
+  --soft-blush-light: #FDECEE;
+  --soft-blush-bg: #FDF2F4;
+  --soft-blush-border: #F5C6CC;
+
+  /* Dusty Dark Rose */
+  --dusty-dark-rose: #99524E;
+  --dusty-rose-light: #BC7672;
+  --dusty-rose-border: rgba(153, 82, 78, 0.28);
+  --dusty-rose-shadow: rgba(153, 82, 78, 0.4);
+
+  /* Butter Yellow (Soft Sunlight Washes) */
+  --butter-yellow: #F7DC83;
+  --butter-yellow-soft: #FDF4D4;
+  --butter-yellow-bg: #FCF5DC;
+  --butter-yellow-border: #F0D375;
+
+  /* Neutrals */
+  --light-cream: #FFF8EA;
+  --warm-white: #FFFCF5;
   --surface-white: #FFFFFF;
-  --neutral-badge: #F4EDE4;
-  --neutral-border: #EADBCC;
-  --neutral-card-bg: #FAF5EE;
+  --paper-border: #F2E7D5;
+  --neutral-badge: #F4E8D7;
 
-  /* Text Colors */
-  --text-dark: #403536;
-  --text-body: #5A4E4F;
-  --text-muted: #746869;
-  --text-light: #9C9091;
+  /* Text & Ink */
+  --dark-cocoa: #49383A;
+  --cocoa-body: #5E4B4D;
+  --cocoa-muted: #826E70;
+  --cocoa-light: #A59496;
 
-  /* Validation Colors */
+  /* Deep Navy */
+  --deep-navy: #102331;
+  --deep-navy-surface: #183347;
+  --deep-navy-border: #234761;
+  --navy-text-light: #E5EEF5;
+  --navy-text-muted: #A6BAC8;
+
+  /* Validation */
   --success: #2E8540;
   --success-bg: #EAF7ED;
   --error: #D9383A;
@@ -50,30 +80,29 @@
   --font-heading: 'Quicksand', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Be Vietnam Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Elevation & Shadows */
-  --shadow-subtle: 0 2px 10px rgba(64, 53, 54, 0.04);
-  --shadow-pink: 0 12px 32px -4px rgba(244, 191, 210, 0.3), 0 4px 12px rgba(64, 53, 54, 0.03);
-  --shadow-yellow: 0 12px 32px -4px rgba(255, 232, 163, 0.35), 0 4px 12px rgba(64, 53, 54, 0.03);
-  --shadow-neutral: 0 10px 28px -4px rgba(64, 53, 54, 0.06), 0 2px 8px rgba(64, 53, 54, 0.02);
-  --shadow-btn-pink: 0 6px 18px -2px rgba(239, 175, 197, 0.5);
-  --shadow-btn-yellow: 0 6px 18px -2px rgba(255, 226, 154, 0.5);
+  /* Hand-drawn Tactile Shadows */
+  --shadow-subtle: 0 3px 12px rgba(73, 56, 58, 0.05);
+  --shadow-card: 0 8px 24px -4px rgba(73, 56, 58, 0.07), 0 2px 6px rgba(73, 56, 58, 0.03);
+  --shadow-tactile-coral: 0 4px 0 #C94A4F, 0 8px 20px rgba(238, 98, 103, 0.35);
+  --shadow-tactile-secondary: 0 3px 0 #99524E;
+  --shadow-scrapbook: 2px 6px 16px rgba(73, 56, 58, 0.09);
 
-  /* Border Radii */
-  --radius-xs: 6px;
-  --radius-sm: 10px;
-  --radius-md: 16px;
+  /* Radii */
+  --radius-xs: 8px;
+  --radius-sm: 12px;
+  --radius-md: 18px;
   --radius-lg: 24px;
   --radius-xl: 32px;
   --radius-pill: 9999px;
 
-  /* Layout Spacing */
+  /* Layout */
   --container-max: 1200px;
   --container-pad: 20px;
   --section-gap: 80px;
 
   /* Transitions */
-  --transition-fast: 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-  --transition-smooth: 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-smooth: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 /* --------------------------------------------------------------------------
@@ -95,9 +124,9 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--cream);
-  color: var(--text-body);
-  line-height: 1.6;
+  background-color: var(--light-cream);
+  color: var(--cocoa-body);
+  line-height: 1.62;
   overflow-x: hidden;
   max-width: 100vw;
   position: relative;
@@ -105,7 +134,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Subtle neutral dot overlay on background */
+/* Gentle paper texture overlay */
 body::before {
   content: "";
   position: fixed;
@@ -114,9 +143,9 @@ body::before {
   width: 100%;
   height: 100%;
   pointer-events: none;
-  background-image: radial-gradient(#E8DCCD 0.75px, transparent 0.75px);
+  background-image: radial-gradient(#E8DCCD 0.65px, transparent 0.65px);
   background-size: 32px 32px;
-  opacity: 0.3;
+  opacity: 0.35;
   z-index: -1;
 }
 
@@ -151,7 +180,7 @@ ul, ol {
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
-  color: var(--text-dark);
+  color: var(--dark-cocoa);
   font-weight: 700;
   line-height: 1.25;
 }
@@ -160,28 +189,22 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 
-/* Hero Title Highlight — Solid Pink only */
-.highlight-pink {
-  background-color: var(--pastel-pink);
-  color: var(--text-dark);
-  padding: 0 8px;
-  border-radius: var(--radius-xs);
-  display: inline-block;
-}
-
 /* --------------------------------------------------------------------------
-   3. LAYOUT CONTAINER & UTILITIES
+   3. LAYOUT CONTAINER & SECTION UTILITIES
    -------------------------------------------------------------------------- */
 .container {
   width: 100%;
   max-width: var(--container-max);
   margin: 0 auto;
   padding: 0 var(--container-pad);
+  position: relative;
+  z-index: 1;
 }
 
 .section {
   padding: var(--section-gap) 0;
   position: relative;
+  overflow: hidden;
 }
 
 .section-header {
@@ -190,7 +213,7 @@ h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 
-/* Section Badges (Single Accent Dependent) */
+/* Section Badges (Japanese Editorial style) */
 .section-badge {
   display: inline-flex;
   align-items: center;
@@ -199,44 +222,50 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-size: 0.85rem;
   font-weight: 700;
-  text-transform: uppercase;
   letter-spacing: 0.5px;
   border-radius: var(--radius-pill);
   margin-bottom: 14px;
 }
 
-.badge-pink {
-  background-color: var(--pastel-pink);
-  color: var(--text-dark);
-  border: 1px solid var(--pink-border);
+.badge-coral {
+  background-color: var(--coral-pink-light);
+  color: var(--coral-pink);
+  border: 1.5px solid var(--soft-blush-border);
+}
+
+.badge-blush {
+  background-color: var(--soft-blush-bg);
+  color: var(--dusty-dark-rose);
+  border: 1.5px solid var(--soft-blush-border);
+}
+
+.badge-dark-rose {
+  background-color: #F8EBEB;
+  color: var(--dusty-dark-rose);
+  border: 1.5px solid var(--dusty-rose-border);
 }
 
 .badge-yellow {
-  background-color: var(--pastel-yellow);
-  color: var(--text-dark);
-  border: 1px solid var(--yellow-border);
-}
-
-.badge-neutral {
-  background-color: var(--neutral-badge);
-  color: var(--text-dark);
-  border: 1px solid var(--neutral-border);
+  background-color: var(--butter-yellow-soft);
+  color: #8C5E1B;
+  border: 1.5px solid var(--butter-yellow-border);
 }
 
 .section-title {
-  font-size: clamp(1.45rem, 3.2vw + 0.35rem, 2.15rem);
+  font-size: clamp(1.5rem, 3.2vw + 0.35rem, 2.2rem);
   margin-bottom: 14px;
-  color: var(--text-dark);
+  color: var(--dark-cocoa);
+  font-weight: 800;
 }
 
 .section-subtitle {
-  font-size: clamp(0.92rem, 1.2vw + 0.35rem, 1.05rem);
-  color: var(--text-muted);
+  font-size: clamp(0.95rem, 1.2vw + 0.35rem, 1.08rem);
+  color: var(--cocoa-muted);
   line-height: 1.6;
 }
 
 /* --------------------------------------------------------------------------
-   4. BUTTON SYSTEM — NO MIXED GRADIENTS
+   4. BUTTON SYSTEM — TACTILE & HAND-DRAWN FEEL (NO GRADIENTS)
    -------------------------------------------------------------------------- */
 .btn {
   display: inline-flex;
@@ -250,87 +279,58 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 1rem;
   border-radius: var(--radius-pill);
   text-align: center;
-  transition: all var(--transition-smooth);
+  transition: all var(--transition-fast);
   position: relative;
   user-select: none;
+  cursor: pointer;
 }
 
-/* Primary Pink CTA — Solid #EFAFC5 */
-.btn-primary, .btn-pink {
-  background-color: var(--pink-btn);
-  color: var(--text-dark);
-  box-shadow: var(--shadow-btn-pink);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-}
-
-.btn-primary:hover, .btn-pink:hover {
-  background-color: var(--pink-btn-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(228, 155, 180, 0.6);
-}
-
-.btn-primary:active, .btn-pink:active {
-  transform: translateY(0);
-}
-
-/* Secondary Yellow CTA — Solid #FFE29A (For Yellow Sections) */
-.btn-yellow {
-  background-color: var(--yellow-btn);
-  color: var(--text-dark);
-  box-shadow: var(--shadow-btn-yellow);
-  border: 1px solid rgba(255, 255, 255, 0.7);
-}
-
-.btn-yellow:hover {
-  background-color: var(--yellow-btn-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 22px rgba(249, 214, 126, 0.6);
-}
-
-/* Neutral White / Outline Buttons */
-.btn-secondary {
-  background-color: #FFFFFF;
-  color: var(--text-dark);
-  border: 1.5px solid var(--pink-border);
-  box-shadow: var(--shadow-subtle);
-}
-
-.btn-secondary:hover {
-  background-color: var(--pastel-pink);
-  transform: translateY(-2px);
-}
-
-.btn-secondary-yellow {
-  background-color: #FFFFFF;
-  color: var(--text-dark);
-  border: 1.5px solid var(--yellow-border);
-  box-shadow: var(--shadow-subtle);
-}
-
-.btn-secondary-yellow:hover {
-  background-color: var(--pastel-yellow-light);
-  transform: translateY(-2px);
-}
-
-.btn-neutral-dark {
-  background-color: var(--text-dark);
+/* Primary Coral Pink CTA — High converting, solid tactile button */
+.btn-primary, .btn-coral {
+  background-color: var(--coral-pink);
   color: #FFFFFF;
-  box-shadow: var(--shadow-subtle);
+  border: 1.5px solid #C94A4F;
+  box-shadow: var(--shadow-tactile-coral);
 }
 
-.btn-neutral-dark:hover {
-  background-color: #2D2525;
-  transform: translateY(-2px);
+.btn-primary:hover, .btn-coral:hover {
+  background-color: var(--coral-pink-hover);
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #C94A4F, 0 4px 12px rgba(238, 98, 103, 0.3);
+}
+
+.btn-primary:active, .btn-coral:active {
+  transform: translateY(4px);
+  box-shadow: 0 0 0 #C94A4F;
+}
+
+/* Secondary CTA — Warm White with Dusty Rose outline */
+.btn-secondary, .btn-secondary-rose {
+  background-color: var(--warm-white);
+  color: var(--dusty-dark-rose);
+  border: 2px solid var(--dusty-dark-rose);
+  box-shadow: var(--shadow-tactile-secondary);
+}
+
+.btn-secondary:hover, .btn-secondary-rose:hover {
+  background-color: var(--soft-blush-light);
+  transform: translateY(1.5px);
+  box-shadow: 0 1.5px 0 #99524E;
+}
+
+.btn-secondary:active, .btn-secondary-rose:active {
+  transform: translateY(3px);
+  box-shadow: 0 0 0 #99524E;
 }
 
 .btn-outline-dark {
   background: transparent;
-  color: var(--text-dark);
-  border: 1.5px solid var(--text-dark);
+  color: var(--dark-cocoa);
+  border: 1.5px solid var(--dark-cocoa);
 }
 
 .btn-outline-dark:hover {
-  background-color: var(--text-dark);
+  background-color: var(--dark-cocoa);
   color: #FFFFFF;
 }
 
@@ -339,16 +339,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --------------------------------------------------------------------------
-   5. HEADER / NAVIGATION (NEUTRAL CREAM & ACCENTS)
+   5. HEADER / TOP NAVIGATION (LIGHT CREAM & EDITORIAL CHARM)
    -------------------------------------------------------------------------- */
 .header {
   position: sticky;
   top: 0;
   width: 100%;
-  background: rgba(255, 249, 242, 0.94);
+  background: rgba(255, 248, 234, 0.95);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--neutral-border);
+  border-bottom: 1.5px solid var(--paper-border);
   z-index: 100;
   padding: 12px 0;
 }
@@ -370,8 +370,8 @@ h1, h2, h3, h4, h5, h6 {
   height: 44px;
   border-radius: var(--radius-pill);
   object-fit: cover;
-  border: 2px solid var(--soft-pink);
-  box-shadow: 0 2px 8px rgba(244, 191, 210, 0.4);
+  border: 2px solid var(--coral-pink);
+  box-shadow: 0 2px 8px rgba(238, 98, 103, 0.3);
   background-color: #FFFFFF;
 }
 
@@ -382,15 +382,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .brand-name {
   font-family: var(--font-heading);
-  font-size: 1.15rem;
-  font-weight: 700;
-  color: var(--text-dark);
-  line-height: 1.1;
+  font-size: 1.18rem;
+  font-weight: 800;
+  color: var(--dark-cocoa);
+  line-height: 1.15;
 }
 
 .brand-location {
   font-size: 0.78rem;
-  color: var(--text-muted);
+  color: var(--dusty-dark-rose);
+  font-weight: 600;
   display: flex;
   align-items: center;
   gap: 4px;
@@ -405,12 +406,12 @@ h1, h2, h3, h4, h5, h6 {
 .nav-link {
   font-weight: 600;
   font-size: 0.92rem;
-  color: var(--text-body);
+  color: var(--cocoa-body);
   position: relative;
 }
 
 .nav-link:hover {
-  color: var(--text-dark);
+  color: var(--coral-pink);
 }
 
 .nav-link::after {
@@ -420,7 +421,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 0;
   width: 0%;
   height: 2px;
-  background-color: var(--soft-pink);
+  background-color: var(--coral-pink);
   transition: width var(--transition-fast);
   border-radius: 2px;
 }
@@ -441,55 +442,57 @@ h1, h2, h3, h4, h5, h6 {
   gap: 8px;
   font-size: 0.92rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--dark-cocoa);
   padding: 8px 14px;
   border-radius: var(--radius-pill);
-  background: var(--neutral-badge);
-  border: 1px solid var(--neutral-border);
+  background: var(--warm-white);
+  border: 1.5px solid var(--paper-border);
+  box-shadow: 0 2px 0 rgba(73, 56, 58, 0.12);
   transition: all var(--transition-fast);
 }
 
 .header-phone:hover {
-  background: var(--pastel-pink);
-  border-color: var(--pink-border);
+  background: var(--soft-blush-light);
+  border-color: var(--soft-blush);
+  color: var(--dusty-dark-rose);
 }
 
 /* --------------------------------------------------------------------------
-   6. HERO SECTION — PINK ACCENT THEME ONLY
-   Cream background • Pink badges • Pink CTA • Pink form accents • NO YELLOW
+   6. HERO SECTION — WARM CREAM + SOFT BUTTER-YELLOW SUNLIGHT WASH
+   Strict 50/50 layout • High conversion • Japanese editorial feeling
    -------------------------------------------------------------------------- */
 .hero-section {
-  padding: 40px 0 60px;
+  padding: 44px 0 64px;
   position: relative;
+  background-color: var(--light-cream);
   overflow: hidden;
-  background-color: var(--cream);
 }
 
-/* Pink blobs only in Hero */
-.hero-blob-1 {
+/* Large, subtle butter-yellow organic background shape (soft painted sunlight) */
+.hero-sunlight-wash {
   position: absolute;
-  top: -10%;
+  top: -8%;
+  right: -6%;
+  width: 680px;
+  height: 680px;
+  background: radial-gradient(circle, #FDF0C2 0%, rgba(247, 220, 131, 0.45) 45%, rgba(255, 248, 234, 0) 72%);
+  border-radius: 56% 44% 68% 32% / 46% 54% 46% 54%;
+  filter: blur(32px);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.hero-blush-wash {
+  position: absolute;
+  bottom: -10%;
   left: -8%;
-  width: 420px;
-  height: 420px;
-  background: radial-gradient(circle, rgba(248, 216, 228, 0.7) 0%, rgba(255, 249, 242, 0) 70%);
+  width: 440px;
+  height: 440px;
+  background: radial-gradient(circle, rgba(239, 165, 174, 0.28) 0%, rgba(255, 248, 234, 0) 70%);
   border-radius: 50%;
   filter: blur(40px);
-  z-index: -1;
   pointer-events: none;
-}
-
-.hero-blob-2 {
-  position: absolute;
-  bottom: 0%;
-  right: -5%;
-  width: 480px;
-  height: 480px;
-  background: radial-gradient(circle, rgba(244, 191, 210, 0.5) 0%, rgba(255, 249, 242, 0) 70%);
-  border-radius: 50%;
-  filter: blur(50px);
-  z-index: -1;
-  pointer-events: none;
+  z-index: 0;
 }
 
 .hero-grid {
@@ -497,6 +500,8 @@ h1, h2, h3, h4, h5, h6 {
   grid-template-columns: 1.08fr 0.92fr;
   gap: 44px;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 
 .hero-content {
@@ -505,26 +510,80 @@ h1, h2, h3, h4, h5, h6 {
   gap: 20px;
 }
 
+/* Hero Typography — Japanese Editorial emphasis */
 .hero-title {
-  font-size: clamp(1.8rem, 4.5vw + 0.3rem, 2.75rem);
+  font-size: clamp(1.9rem, 4.2vw + 0.3rem, 2.85rem);
   font-weight: 800;
-  line-height: 1.2;
-  color: var(--text-dark);
+  line-height: 1.22;
+  color: var(--dark-cocoa);
   letter-spacing: -0.5px;
 }
 
-.hero-description {
-  font-size: clamp(0.98rem, 1.2vw + 0.35rem, 1.12rem);
-  color: var(--text-body);
-  line-height: 1.65;
+.hero-line-1 {
+  display: block;
+  margin-bottom: 4px;
 }
 
-/* Benefits in Hero — Pink circles, NO yellow */
+.hero-line-2 {
+  display: block;
+  font-size: clamp(1.35rem, 2.8vw + 0.2rem, 1.85rem);
+  font-weight: 700;
+  color: var(--dusty-dark-rose);
+  line-height: 1.3;
+}
+
+/* Alternating text emphasis */
+.hl-coral {
+  color: var(--coral-pink);
+}
+
+.hl-dark-rose {
+  color: var(--dusty-dark-rose);
+}
+
+.hl-cocoa {
+  color: var(--dark-cocoa);
+}
+
+/* Hand-drawn wavy underline under key word */
+.with-doodle {
+  position: relative;
+  display: inline-block;
+}
+
+.with-doodle::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 6px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 6' fill='none'%3E%3Cpath d='M0 3C5 0.5 7 5.5 12 3C17 0.5 19 5.5 24 3' stroke='%23EE6267' stroke-width='2.4' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-repeat: repeat-x;
+  background-size: 20px 6px;
+}
+
+.title-paw-doodle {
+  display: inline-block;
+  vertical-align: middle;
+  margin-left: 2px;
+  color: var(--coral-pink);
+  transform: rotate(15deg);
+}
+
+.hero-description {
+  font-size: clamp(1rem, 1.2vw + 0.35rem, 1.14rem);
+  color: var(--cocoa-body);
+  line-height: 1.68;
+  max-width: 540px;
+}
+
+/* 3 Benefits — Cozy & hand-crafted */
 .hero-benefits {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  margin: 6px 0 10px;
+  margin: 4px 0 10px;
 }
 
 .benefit-item {
@@ -533,21 +592,22 @@ h1, h2, h3, h4, h5, h6 {
   gap: 12px;
   font-size: 1rem;
   font-weight: 600;
-  color: var(--text-dark);
+  color: var(--dark-cocoa);
 }
 
 .benefit-icon-check {
-  width: 24px;
-  height: 24px;
-  min-width: 24px;
-  background-color: var(--pastel-pink);
-  color: var(--deep-pink);
-  border: 1px solid var(--pink-border);
+  width: 26px;
+  height: 26px;
+  min-width: 26px;
+  background-color: var(--soft-blush-light);
+  color: var(--coral-pink);
+  border: 1.5px solid var(--soft-blush);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.85rem;
+  font-size: 0.88rem;
+  font-weight: 800;
 }
 
 .hero-actions {
@@ -561,17 +621,18 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: 0.84rem;
-  color: var(--text-muted);
+  font-size: 0.86rem;
+  color: var(--cocoa-muted);
 }
 
+/* Authentic Social Proof */
 .hero-social-proof {
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-top: 10px;
+  margin-top: 8px;
   padding-top: 18px;
-  border-top: 1px dashed var(--neutral-border);
+  border-top: 1.5px dashed var(--paper-border);
 }
 
 .proof-avatars {
@@ -580,12 +641,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .proof-avatar {
-  width: 34px;
-  height: 34px;
+  width: 36px;
+  height: 36px;
   border-radius: 50%;
   border: 2px solid #FFFFFF;
   object-fit: cover;
   margin-left: -10px;
+  box-shadow: 0 2px 6px rgba(73, 56, 58, 0.15);
 }
 
 .proof-avatar:first-child {
@@ -593,31 +655,49 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .proof-text {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  line-height: 1.35;
+  font-size: 0.88rem;
+  color: var(--cocoa-muted);
+  line-height: 1.4;
 }
 
 .proof-text strong {
-  color: var(--text-dark);
+  color: var(--dark-cocoa);
 }
 
 /* --------------------------------------------------------------------------
-   7. LEAD FORM CARD — PINK THEME ONLY
-   Solid pink border • Pink focus states • Solid pink button • NO yellow
+   7. LEAD GENERATION CARD — WARM WHITE WITH CUTE CAT EARS
    -------------------------------------------------------------------------- */
 .hero-form-wrapper {
   position: relative;
 }
 
 .lead-card {
-  background: var(--surface-white);
-  border: 2px solid var(--soft-pink);
+  background: var(--warm-white);
+  border: 2px solid rgba(239, 165, 174, 0.6);
   border-radius: var(--radius-xl);
-  padding: 32px 30px;
-  box-shadow: var(--shadow-pink);
+  padding: 34px 30px;
+  box-shadow: 0 14px 36px -4px rgba(73, 56, 58, 0.08), 0 3px 10px rgba(239, 165, 174, 0.15);
   position: relative;
   transition: box-shadow var(--transition-smooth);
+}
+
+/* Cat ears illustration atop card */
+.lead-card-ears {
+  position: absolute;
+  top: -16px;
+  left: 36px;
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  pointer-events: none;
+}
+
+.cat-ear-shape {
+  width: 22px;
+  height: 18px;
+  background-color: var(--coral-pink);
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  border-radius: 4px;
 }
 
 .lead-card-header {
@@ -632,24 +712,24 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 0.78rem;
   font-weight: 700;
   text-transform: uppercase;
-  color: var(--deep-pink);
-  background: var(--pink-card-bg);
-  border: 1px solid var(--pink-border);
-  padding: 4px 12px;
+  color: var(--coral-pink);
+  background: var(--coral-pink-light);
+  border: 1px solid var(--soft-blush);
+  padding: 4px 14px;
   border-radius: var(--radius-pill);
   margin-bottom: 8px;
 }
 
 .lead-card-title {
-  font-size: 1.65rem;
-  font-weight: 750;
-  color: var(--text-dark);
+  font-size: clamp(1.4rem, 2.5vw + 0.3rem, 1.7rem);
+  font-weight: 800;
+  color: var(--dark-cocoa);
   margin-bottom: 6px;
 }
 
 .lead-card-subtitle {
   font-size: 0.92rem;
-  color: var(--text-muted);
+  color: var(--cocoa-muted);
 }
 
 .lead-form {
@@ -667,16 +747,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-label {
   font-size: 0.88rem;
-  font-weight: 600;
-  color: var(--text-dark);
+  font-weight: 700;
+  color: var(--dark-cocoa);
   display: flex;
   align-items: center;
   gap: 4px;
 }
 
 .required-star {
-  color: var(--error);
-  font-weight: 700;
+  color: var(--coral-pink);
+  font-weight: 800;
 }
 
 .input-wrapper {
@@ -690,7 +770,7 @@ h1, h2, h3, h4, h5, h6 {
   left: 14px;
   width: 18px;
   height: 18px;
-  color: var(--text-light);
+  color: var(--cocoa-light);
   pointer-events: none;
   transition: color var(--transition-fast);
 }
@@ -699,11 +779,11 @@ h1, h2, h3, h4, h5, h6 {
   width: 100%;
   min-height: 48px;
   padding: 11px 16px 11px 42px;
-  background-color: var(--cream);
-  border: 1.5px solid var(--neutral-border);
+  background-color: #FFFFFF;
+  border: 1.5px solid var(--paper-border);
   border-radius: var(--radius-sm);
-  color: var(--text-dark);
-  font-size: 16px; /* 16px prevents iOS Safari automatic viewport zoom */
+  color: var(--dark-cocoa);
+  font-size: 16px; /* Essential 16px prevents iOS Safari auto zoom */
   transition: all var(--transition-fast);
   outline: none;
 }
@@ -715,14 +795,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .form-input:focus, .form-select:focus, .form-textarea:focus {
-  border-color: var(--soft-pink);
+  border-color: var(--coral-pink);
   background-color: #FFFFFF;
-  box-shadow: 0 0 0 3px rgba(244, 191, 210, 0.35);
+  box-shadow: 0 0 0 3px rgba(238, 98, 103, 0.25);
 }
 
 .form-input:focus + .input-icon,
 .input-wrapper:focus-within .input-icon {
-  color: var(--deep-pink);
+  color: var(--coral-pink);
 }
 
 .form-row {
@@ -731,7 +811,7 @@ h1, h2, h3, h4, h5, h6 {
   gap: 12px;
 }
 
-/* Radio chips — Pink accent */
+/* Radio chips — Coral Pink */
 .people-options {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -743,12 +823,12 @@ h1, h2, h3, h4, h5, h6 {
   align-items: center;
   justify-content: center;
   padding: 9px 6px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  background-color: var(--cream);
-  border: 1.5px solid var(--neutral-border);
+  font-size: 0.86rem;
+  font-weight: 700;
+  background-color: #FFFFFF;
+  border: 1.5px solid var(--paper-border);
   border-radius: var(--radius-sm);
-  color: var(--text-body);
+  color: var(--cocoa-body);
   cursor: pointer;
   transition: all var(--transition-fast);
   text-align: center;
@@ -762,10 +842,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .people-radio-input:checked + .people-radio-label {
-  background-color: var(--pastel-pink);
-  border-color: var(--soft-pink);
-  color: var(--text-dark);
-  font-weight: 700;
+  background-color: var(--coral-pink);
+  border-color: var(--coral-pink);
+  color: #FFFFFF;
+  box-shadow: 0 2px 6px rgba(238, 98, 103, 0.35);
 }
 
 .form-input.is-invalid, .form-select.is-invalid {
@@ -794,10 +874,10 @@ h1, h2, h3, h4, h5, h6 {
   display: flex;
   align-items: flex-start;
   gap: 10px;
-  font-size: 0.82rem;
-  color: var(--text-muted);
+  font-size: 0.84rem;
+  color: var(--cocoa-muted);
   cursor: pointer;
-  line-height: 1.4;
+  line-height: 1.45;
 }
 
 .consent-checkbox {
@@ -807,7 +887,7 @@ h1, h2, h3, h4, h5, h6 {
   height: 18px;
   min-width: 18px;
   margin-top: 1px;
-  border: 1.5px solid var(--soft-pink);
+  border: 1.5px solid var(--coral-pink);
   border-radius: 4px;
   background-color: #FFFFFF;
   cursor: pointer;
@@ -816,8 +896,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .consent-checkbox:checked {
-  background-color: var(--deep-pink);
-  border-color: var(--deep-pink);
+  background-color: var(--coral-pink);
+  border-color: var(--coral-pink);
 }
 
 .consent-checkbox:checked::after {
@@ -841,7 +921,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .form-note {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: var(--cocoa-muted);
   text-align: center;
   display: flex;
   align-items: center;
@@ -849,7 +929,7 @@ h1, h2, h3, h4, h5, h6 {
   gap: 6px;
 }
 
-/* Success State in Hero — Pink Accent only */
+/* Success Card */
 .form-success-card {
   display: none;
   text-align: center;
@@ -868,32 +948,32 @@ h1, h2, h3, h4, h5, h6 {
   width: 72px;
   height: 72px;
   border-radius: 50%;
-  background: var(--pastel-pink);
-  border: 2px solid var(--soft-pink);
+  background: var(--coral-pink-light);
+  border: 2px solid var(--soft-blush);
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 2.2rem;
-  box-shadow: 0 6px 18px rgba(244, 191, 210, 0.4);
+  box-shadow: 0 6px 18px rgba(238, 98, 103, 0.25);
   margin-bottom: 6px;
 }
 
 .success-headline {
   font-size: 1.55rem;
-  color: var(--text-dark);
+  color: var(--dark-cocoa);
 }
 
 .success-body {
   font-size: 0.98rem;
-  color: var(--text-body);
+  color: var(--cocoa-body);
   max-width: 380px;
   margin: 0 auto;
 }
 
 .success-booking-summary {
   width: 100%;
-  background: var(--cream);
-  border: 1px dashed var(--soft-pink);
+  background: var(--light-cream);
+  border: 1.5px dashed var(--soft-blush);
   border-radius: var(--radius-md);
   padding: 16px;
   text-align: left;
@@ -909,23 +989,23 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .summary-label {
-  color: var(--text-muted);
+  color: var(--cocoa-muted);
 }
 
 .summary-val {
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--dark-cocoa);
 }
 
 /* --------------------------------------------------------------------------
-   8. EXPERIENCE SECTION — YELLOW ACCENT THEME ONLY
-   Very light yellow background • Yellow cards & accents • NO PINK
+   8. CAT EXPERIENCE SECTION — BUTTER YELLOW ATMOSPHERIC BACKGROUND
+   Soft sunlight background • Warm white cards • Hand-drawn editorial icons
    -------------------------------------------------------------------------- */
 .experience-section {
-  background-color: var(--yellow-card-bg);
+  background-color: var(--butter-yellow-soft);
   position: relative;
-  border-top: 1px solid var(--yellow-border);
-  border-bottom: 1px solid var(--yellow-border);
+  border-top: 1.5px solid var(--butter-yellow-border);
+  border-bottom: 1.5px solid var(--butter-yellow-border);
 }
 
 .experience-grid {
@@ -935,11 +1015,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .experience-card {
-  background: #FFFFFF;
+  background: var(--warm-white);
   border-radius: var(--radius-lg);
   padding: 36px 28px;
-  box-shadow: var(--shadow-subtle);
-  border: 1.5px solid var(--yellow-border);
+  box-shadow: var(--shadow-card);
+  border: 1.5px solid rgba(153, 82, 78, 0.12);
   transition: all var(--transition-smooth);
   display: flex;
   flex-direction: column;
@@ -948,71 +1028,56 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
 }
 
-.experience-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 4px;
-  background: var(--pastel-yellow);
-  opacity: 0;
-  transition: opacity var(--transition-fast);
-}
-
 .experience-card:hover {
   transform: translateY(-6px);
-  box-shadow: var(--shadow-yellow);
-  border-color: var(--warm-yellow);
-}
-
-.experience-card:hover::before {
-  opacity: 1;
+  box-shadow: 0 14px 32px rgba(73, 56, 58, 0.12);
+  border-color: var(--dusty-dark-rose);
 }
 
 .experience-icon-wrapper {
-  width: 60px;
-  height: 60px;
+  width: 64px;
+  height: 64px;
   border-radius: var(--radius-md);
-  background-color: var(--pastel-yellow-light);
-  border: 1.5px solid var(--pastel-yellow);
+  background-color: #F8EBEB;
+  border: 1.5px solid var(--dusty-rose-border);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.8rem;
+  font-size: 1.9rem;
   margin-bottom: 20px;
   transition: transform var(--transition-fast);
 }
 
 .experience-card:hover .experience-icon-wrapper {
-  transform: scale(1.08) rotate(3deg);
+  transform: scale(1.08) rotate(4deg);
 }
 
 .experience-card-title {
   font-size: 1.35rem;
+  font-weight: 800;
   margin-bottom: 12px;
-  color: var(--text-dark);
+  color: var(--dark-cocoa);
 }
 
 .experience-card-desc {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  line-height: 1.6;
+  font-size: 0.96rem;
+  color: var(--cocoa-muted);
+  line-height: 1.62;
 }
 
 /* --------------------------------------------------------------------------
-   9. CAT GALLERY SECTION — NEUTRAL THEME
-   Neutral cream background • Cat photography is hero • NO strong pink or yellow blocks
+   9. CAT GALLERY SECTION — LIGHT CREAM WITH SCRAPBOOK / EDITORIAL FLAIR
+   Authentic photography • Polaroid tape detail • Tactile paper warmth
    -------------------------------------------------------------------------- */
 .gallery-section {
-  background-color: var(--cream);
+  background-color: var(--light-cream);
   position: relative;
 }
 
 .gallery-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 20px;
+  gap: 22px;
   margin-bottom: 32px;
 }
 
@@ -1020,11 +1085,37 @@ h1, h2, h3, h4, h5, h6 {
   position: relative;
   border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: var(--shadow-subtle);
-  background-color: var(--neutral-border);
+  box-shadow: var(--shadow-scrapbook);
+  background-color: #FFFFFF;
+  border: 3px solid #FFFFFF;
   aspect-ratio: 4 / 5;
   cursor: pointer;
   transition: all var(--transition-smooth);
+}
+
+/* Scrapbook tape badge on top */
+.gallery-item::before {
+  content: "";
+  position: absolute;
+  top: -4px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 52px;
+  height: 14px;
+  background-color: rgba(247, 220, 131, 0.7);
+  border-radius: 2px;
+  box-shadow: 0 1px 3px rgba(73, 56, 58, 0.1);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.gallery-item:nth-child(even)::before {
+  background-color: rgba(239, 165, 174, 0.7);
+  transform: translateX(-50%) rotate(-2deg);
+}
+
+.gallery-item:nth-child(odd)::before {
+  transform: translateX(-50%) rotate(2deg);
 }
 
 .gallery-img.img-cat-flower {
@@ -1032,8 +1123,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gallery-item:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-neutral);
+  transform: translateY(-6px) rotate(1deg);
+  box-shadow: 0 16px 36px rgba(73, 56, 58, 0.14);
+}
+
+.gallery-item:nth-child(even):hover {
+  transform: translateY(-6px) rotate(-1deg);
 }
 
 .gallery-img {
@@ -1044,13 +1139,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gallery-item:hover .gallery-img {
-  transform: scale(1.06);
+  transform: scale(1.05);
 }
 
 .gallery-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(180deg, transparent 55%, rgba(45, 37, 37, 0.75) 100%);
+  background: linear-gradient(180deg, transparent 55%, rgba(16, 35, 49, 0.8) 100%);
   opacity: 0;
   display: flex;
   align-items: flex-end;
@@ -1063,24 +1158,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .gallery-overlay-badge {
-  background: rgba(255, 255, 255, 0.95);
-  color: var(--text-dark);
+  background: #FFFFFF;
+  color: var(--dark-cocoa);
   font-size: 0.8rem;
   font-weight: 700;
   padding: 5px 14px;
   border-radius: var(--radius-pill);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .gallery-caption-box {
-  background: #FFFFFF;
-  border: 1.5px solid var(--neutral-border);
+  background: var(--warm-white);
+  border: 1.5px solid var(--paper-border);
   border-radius: var(--radius-md);
   padding: 18px 24px;
   text-align: center;
   max-width: 680px;
   margin: 0 auto 30px;
   font-size: 1rem;
-  color: var(--text-dark);
+  color: var(--dark-cocoa);
   box-shadow: var(--shadow-subtle);
 }
 
@@ -1092,7 +1188,7 @@ h1, h2, h3, h4, h5, h6 {
 .lightbox-modal {
   position: fixed;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.85);
+  background-color: rgba(16, 35, 49, 0.88);
   display: none;
   align-items: center;
   justify-content: center;
@@ -1124,31 +1220,31 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   top: 14px;
   right: 14px;
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(16, 35, 49, 0.7);
   color: #FFFFFF;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   cursor: pointer;
   transition: background var(--transition-fast);
 }
 
 .lightbox-close:hover {
-  background: rgba(0, 0, 0, 0.9);
+  background: var(--coral-pink);
 }
 
 /* --------------------------------------------------------------------------
-   10. WHO IS THIS FOR SECTION — PINK ACCENT THEME ONLY
-   Pink card accents • Pink icons • Pink borders • NO YELLOW
+   10. WHO IS THIS FOR SECTION — VERY PALE BLUSH PINK
+   Editorial cards • Friendly illustrations
    -------------------------------------------------------------------------- */
 .target-section {
-  background-color: var(--pink-card-bg);
-  border-top: 1px solid var(--pink-border);
-  border-bottom: 1px solid var(--pink-border);
+  background-color: var(--soft-blush-bg);
+  border-top: 1.5px solid var(--soft-blush-border);
+  border-bottom: 1.5px solid var(--soft-blush-border);
 }
 
 .target-grid {
@@ -1159,8 +1255,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .target-card {
-  background: #FFFFFF;
-  border: 1.5px solid var(--pink-border);
+  background: var(--warm-white);
+  border: 1.5px solid var(--soft-blush-border);
   border-radius: var(--radius-lg);
   padding: 28px 20px;
   text-align: center;
@@ -1169,24 +1265,31 @@ h1, h2, h3, h4, h5, h6 {
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  box-shadow: var(--shadow-subtle);
 }
 
 .target-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--soft-pink);
-  box-shadow: var(--shadow-pink);
-  background: #FFF9FC;
+  transform: translateY(-5px);
+  border-color: var(--dusty-dark-rose);
+  box-shadow: 0 12px 28px rgba(153, 82, 78, 0.12);
+  background: #FFFFFF;
 }
 
 .target-emoji {
-  font-size: 2.2rem;
+  font-size: 2.3rem;
   line-height: 1;
 }
 
 .target-title {
-  font-size: 1.08rem;
-  font-weight: 700;
-  color: var(--text-dark);
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: var(--dark-cocoa);
+}
+
+.target-desc {
+  font-size: 0.92rem;
+  color: var(--cocoa-muted);
+  line-height: 1.5;
 }
 
 .target-supporting {
@@ -1194,18 +1297,18 @@ h1, h2, h3, h4, h5, h6 {
   max-width: 600px;
   margin: 0 auto;
   font-size: 1rem;
-  color: var(--text-muted);
+  color: var(--cocoa-muted);
   font-style: italic;
 }
 
 /* --------------------------------------------------------------------------
-   11. HOW IT WORKS SECTION — YELLOW ACCENT THEME ONLY
-   Yellow steps • Yellow number circles • Solid Yellow CTA • NO PINK
+   11. HOW IT WORKS SECTION — LIGHT CREAM
+   3 simple steps • Clean Japanese editorial numbers
    -------------------------------------------------------------------------- */
 .how-section {
-  background-color: var(--yellow-card-bg);
+  background-color: var(--light-cream);
   position: relative;
-  border-bottom: 1px solid var(--yellow-border);
+  border-bottom: 1.5px solid var(--paper-border);
 }
 
 .steps-grid {
@@ -1223,13 +1326,13 @@ h1, h2, h3, h4, h5, h6 {
   left: 15%;
   right: 15%;
   height: 2px;
-  border-top: 2px dashed var(--pastel-yellow);
+  border-top: 2.5px dashed var(--soft-blush);
   z-index: 1;
 }
 
 .step-card {
-  background: #FFFFFF;
-  border: 1.5px solid var(--yellow-border);
+  background: var(--warm-white);
+  border: 1.5px solid var(--paper-border);
   border-radius: var(--radius-lg);
   padding: 36px 24px;
   text-align: center;
@@ -1240,38 +1343,39 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .step-card:hover {
-  transform: translateY(-4px);
-  border-color: var(--warm-yellow);
-  box-shadow: var(--shadow-yellow);
+  transform: translateY(-5px);
+  border-color: var(--coral-pink);
+  box-shadow: 0 12px 28px rgba(73, 56, 58, 0.1);
 }
 
 .step-number {
-  width: 56px;
-  height: 56px;
+  width: 58px;
+  height: 58px;
   border-radius: 50%;
-  background: var(--pastel-yellow);
-  color: var(--text-dark);
+  background: var(--coral-pink-light);
+  color: var(--coral-pink);
   font-family: var(--font-heading);
-  font-size: 1.35rem;
+  font-size: 1.4rem;
   font-weight: 800;
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 0 auto 20px;
-  border: 2px solid #FFFFFF;
-  box-shadow: 0 4px 12px rgba(255, 232, 163, 0.6);
+  border: 2px solid var(--soft-blush);
+  box-shadow: 0 4px 12px rgba(238, 98, 103, 0.25);
 }
 
 .step-title {
   font-size: 1.25rem;
+  font-weight: 800;
   margin-bottom: 10px;
-  color: var(--text-dark);
+  color: var(--dark-cocoa);
 }
 
 .step-desc {
   font-size: 0.95rem;
-  color: var(--text-muted);
-  line-height: 1.55;
+  color: var(--cocoa-muted);
+  line-height: 1.58;
 }
 
 .how-cta-wrapper {
@@ -1279,28 +1383,27 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --------------------------------------------------------------------------
-   12. WHY VISIT SECTION (BENEFITS) — NEUTRAL THEME
-   Cream & warm white • Neutral checklist • NO yellow, NO pink
+   12. WHY VISIT SECTION (BENEFITS) — LIGHT CREAM WITH WARM WHITE CONTAINER
    -------------------------------------------------------------------------- */
 .why-section {
-  background-color: var(--cream);
+  background-color: var(--light-cream);
   position: relative;
 }
 
 .why-wrapper {
-  max-width: 800px;
+  max-width: 820px;
   margin: 0 auto;
-  background: #FFFFFF;
-  border: 1.5px solid var(--neutral-border);
+  background: var(--warm-white);
+  border: 2px solid var(--paper-border);
   border-radius: var(--radius-xl);
-  padding: 44px 36px;
-  box-shadow: var(--shadow-neutral);
+  padding: 44px 38px;
+  box-shadow: var(--shadow-card);
 }
 
 .why-list {
   display: flex;
   flex-direction: column;
-  gap: 18px;
+  gap: 16px;
 }
 
 .why-item {
@@ -1309,44 +1412,45 @@ h1, h2, h3, h4, h5, h6 {
   gap: 16px;
   font-size: 1.05rem;
   font-weight: 600;
-  color: var(--text-dark);
+  color: var(--dark-cocoa);
   padding: 14px 18px;
-  background: var(--warm-white);
+  background: #FFFFFF;
   border-radius: var(--radius-md);
-  border: 1px solid var(--neutral-border);
+  border: 1.5px solid var(--paper-border);
   transition: all var(--transition-fast);
 }
 
 .why-item:hover {
-  background: #FFFFFF;
-  border-color: #C8B9A6;
+  border-color: var(--soft-blush);
   transform: translateX(6px);
+  background: var(--coral-pink-light);
 }
 
 .why-check-icon {
-  width: 26px;
-  height: 26px;
-  min-width: 26px;
-  background-color: var(--neutral-badge);
-  color: var(--text-dark);
-  border: 1px solid var(--neutral-border);
+  width: 28px;
+  height: 28px;
+  min-width: 28px;
+  background-color: var(--coral-pink-light);
+  color: var(--coral-pink);
+  border: 1.5px solid var(--soft-blush);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
+  font-weight: 800;
   margin-top: 1px;
 }
 
 /* --------------------------------------------------------------------------
-   13. CUSTOMER REVIEWS — NEUTRAL THEME
-   Cream and white • Visually calm • Natural warm amber stars • NO mixed accents
+   13. CUSTOMER REVIEWS — SOFT BUTTER YELLOW ATMOSPHERIC BACKGROUND
+   Warm sunlight atmosphere • Warm amber stars • Authentic quotes
    -------------------------------------------------------------------------- */
 .reviews-section {
-  background-color: var(--warm-white);
+  background-color: var(--butter-yellow-soft);
   position: relative;
-  border-top: 1px solid var(--neutral-border);
-  border-bottom: 1px solid var(--neutral-border);
+  border-top: 1.5px solid var(--butter-yellow-border);
+  border-bottom: 1.5px solid var(--butter-yellow-border);
 }
 
 .reviews-grid {
@@ -1357,10 +1461,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .review-card {
-  background: #FFFFFF;
-  border: 1.5px solid var(--neutral-border);
+  background: var(--warm-white);
+  border: 1.5px solid rgba(153, 82, 78, 0.12);
   border-radius: var(--radius-lg);
-  padding: 28px 24px;
+  padding: 30px 24px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -1369,72 +1473,71 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .review-card:hover {
-  border-color: #C8B9A6;
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-neutral);
+  border-color: var(--dusty-dark-rose);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 28px rgba(73, 56, 58, 0.1);
 }
 
 .review-stars {
-  color: #E5A93C;
-  font-size: 1.15rem;
+  color: #E89E28;
+  font-size: 1.18rem;
   letter-spacing: 2px;
   margin-bottom: 14px;
 }
 
 .review-quote {
-  font-size: 0.95rem;
-  color: var(--text-body);
+  font-size: 0.96rem;
+  color: var(--cocoa-body);
   font-style: italic;
-  line-height: 1.6;
+  line-height: 1.62;
   margin-bottom: 20px;
 }
 
 .review-author {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   padding-top: 14px;
-  border-top: 1px solid var(--neutral-border);
+  border-top: 1.5px solid var(--paper-border);
 }
 
 .review-author-avatar {
-  width: 36px;
-  height: 36px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
-  background: var(--neutral-badge);
-  border: 1px solid var(--neutral-border);
+  background: var(--soft-blush-light);
+  border: 1.5px solid var(--soft-blush);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: 700;
-  font-size: 0.85rem;
-  color: var(--text-dark);
+  font-weight: 800;
+  font-size: 0.9rem;
+  color: var(--dusty-dark-rose);
 }
 
 .review-author-name {
   font-weight: 700;
-  font-size: 0.9rem;
-  color: var(--text-dark);
+  font-size: 0.92rem;
+  color: var(--dark-cocoa);
 }
 
 .review-source-badge {
   font-size: 0.74rem;
-  color: var(--text-muted);
+  color: var(--cocoa-muted);
 }
 
 .review-disclaimer {
   text-align: center;
-  font-size: 0.82rem;
-  color: var(--text-muted);
+  font-size: 0.84rem;
+  color: var(--cocoa-muted);
 }
 
 /* --------------------------------------------------------------------------
-   14. LOCATION SECTION — PINK ACCENT THEME ONLY
-   Pastel pink accent • Pink info icons • Pink CTA • NO YELLOW
+   14. LOCATION & DIRECTIONS SECTION — LIGHT CREAM
    -------------------------------------------------------------------------- */
 .location-section {
-  background-color: var(--pink-card-bg);
-  border-bottom: 1px solid var(--pink-border);
+  background-color: var(--light-cream);
+  border-bottom: 1.5px solid var(--paper-border);
 }
 
 .location-grid {
@@ -1445,11 +1548,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .location-card {
-  background: #FFFFFF;
-  border: 2px solid var(--soft-pink);
+  background: var(--warm-white);
+  border: 2px solid rgba(239, 165, 174, 0.5);
   border-radius: var(--radius-xl);
   padding: 36px 30px;
-  box-shadow: var(--shadow-pink);
+  box-shadow: var(--shadow-card);
 }
 
 .location-header {
@@ -1457,13 +1560,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .location-title {
-  font-size: 1.85rem;
+  font-size: clamp(1.45rem, 3vw + 0.3rem, 1.95rem);
+  font-weight: 800;
   margin-bottom: 10px;
+  color: var(--dark-cocoa);
 }
 
 .location-lead {
-  font-size: 0.95rem;
-  color: var(--text-muted);
+  font-size: 0.96rem;
+  color: var(--cocoa-muted);
   line-height: 1.6;
 }
 
@@ -1481,31 +1586,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .location-info-icon {
-  width: 38px;
-  height: 38px;
-  min-width: 38px;
+  width: 40px;
+  height: 40px;
+  min-width: 40px;
   border-radius: var(--radius-sm);
-  background-color: var(--pastel-pink);
-  border: 1px solid var(--pink-border);
+  background-color: var(--coral-pink-light);
+  border: 1.5px solid var(--soft-blush);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   margin-top: 2px;
 }
 
 .location-info-label {
   font-size: 0.8rem;
-  color: var(--text-muted);
+  color: var(--cocoa-muted);
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 0.5px;
 }
 
 .location-info-val {
-  font-size: 1rem;
+  font-size: 1.05rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--dark-cocoa);
 }
 
 .location-actions {
@@ -1518,10 +1623,10 @@ h1, h2, h3, h4, h5, h6 {
   height: 420px;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  box-shadow: var(--shadow-pink);
-  border: 2px solid var(--pink-border);
+  box-shadow: var(--shadow-card);
+  border: 2px solid var(--paper-border);
   position: relative;
-  background-color: #E5E3DF;
+  background-color: #E8E5DF;
 }
 
 .map-iframe {
@@ -1531,13 +1636,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --------------------------------------------------------------------------
-   15. FAQ SECTION — YELLOW ACCENT THEME ONLY
-   Simple cream/yellow accordion cards • Yellow chevron • NO PINK
+   15. FAQ ACCORDION SECTION — VERY PALE BLUSH PINK
    -------------------------------------------------------------------------- */
 .faq-section {
-  background-color: var(--yellow-card-bg);
+  background-color: var(--soft-blush-bg);
   position: relative;
-  border-bottom: 1px solid var(--yellow-border);
+  border-bottom: 1.5px solid var(--soft-blush-border);
 }
 
 .faq-list {
@@ -1549,20 +1653,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .faq-item {
-  background: #FFFFFF;
-  border: 1.5px solid var(--yellow-border);
+  background: var(--warm-white);
+  border: 1.5px solid var(--soft-blush-border);
   border-radius: var(--radius-md);
   overflow: hidden;
   transition: all var(--transition-fast);
 }
 
 .faq-item:hover {
-  border-color: var(--warm-yellow);
+  border-color: var(--dusty-dark-rose);
 }
 
 .faq-item.active {
-  border-color: var(--warm-yellow);
-  box-shadow: var(--shadow-yellow);
+  border-color: var(--dusty-dark-rose);
+  box-shadow: 0 8px 24px rgba(153, 82, 78, 0.1);
 }
 
 .faq-question-btn {
@@ -1574,7 +1678,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-size: 1.08rem;
   font-weight: 700;
-  color: var(--text-dark);
+  color: var(--dark-cocoa);
   text-align: left;
   background: transparent;
   gap: 16px;
@@ -1585,8 +1689,9 @@ h1, h2, h3, h4, h5, h6 {
   height: 28px;
   min-width: 28px;
   border-radius: 50%;
-  background: var(--pastel-yellow-light);
-  border: 1px solid var(--yellow-border);
+  background: #F8EBEB;
+  border: 1.5px solid var(--dusty-rose-border);
+  color: var(--dusty-dark-rose);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1596,7 +1701,9 @@ h1, h2, h3, h4, h5, h6 {
 
 .faq-item.active .faq-icon-chevron {
   transform: rotate(180deg);
-  background: var(--pastel-yellow);
+  background: var(--coral-pink);
+  color: #FFFFFF;
+  border-color: var(--coral-pink);
 }
 
 .faq-answer {
@@ -1604,8 +1711,8 @@ h1, h2, h3, h4, h5, h6 {
   overflow: hidden;
   transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), padding 0.35s ease;
   padding: 0 22px;
-  color: var(--text-body);
-  font-size: 0.95rem;
+  color: var(--cocoa-body);
+  font-size: 0.96rem;
   line-height: 1.65;
 }
 
@@ -1614,23 +1721,22 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --------------------------------------------------------------------------
-   16. FINAL CTA BANNER — PINK THEME ONLY
-   Light pastel pink background • Dark brown headline • Darker solid pink CTA
-   Small white/cream paw illustrations • NO YELLOW
+   16. FINAL CTA BANNER — CORAL PINK & BLUSH FOCUS
+   Tactile friendly button • Hand-drawn paw prints • High conversion
    -------------------------------------------------------------------------- */
 .final-cta-section {
-  padding: 70px 0;
+  padding: 72px 0;
   position: relative;
-  background-color: var(--cream);
+  background-color: var(--light-cream);
 }
 
 .final-cta-card {
-  background-color: #FDF0F5;
-  border: 2px solid var(--soft-pink);
+  background-color: #FDF1F3;
+  border: 2px solid var(--soft-blush);
   border-radius: var(--radius-xl);
   padding: 56px 36px;
   text-align: center;
-  box-shadow: var(--shadow-pink);
+  box-shadow: 0 16px 40px rgba(238, 98, 103, 0.12);
   position: relative;
   overflow: hidden;
 }
@@ -1640,7 +1746,7 @@ h1, h2, h3, h4, h5, h6 {
   position: absolute;
   font-size: 4rem;
   opacity: 0.12;
-  color: var(--soft-pink);
+  color: var(--coral-pink);
   pointer-events: none;
 }
 
@@ -1657,15 +1763,16 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .final-cta-title {
-  font-size: 2.2rem;
+  font-size: clamp(1.6rem, 3.8vw + 0.3rem, 2.3rem);
+  font-weight: 800;
   margin-bottom: 14px;
-  color: var(--text-dark);
+  color: var(--dark-cocoa);
 }
 
 .final-cta-text {
-  font-size: 1.08rem;
-  color: var(--text-body);
-  max-width: 600px;
+  font-size: clamp(1rem, 1.2vw + 0.3rem, 1.12rem);
+  color: var(--cocoa-body);
+  max-width: 620px;
   margin: 0 auto 28px;
 }
 
@@ -1677,11 +1784,12 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* --------------------------------------------------------------------------
-   17. FOOTER — NEUTRAL DARK
+   17. FOOTER — DEEP NAVY
+   Grounding anchor • Deep contrast • Warm cream & coral text
    -------------------------------------------------------------------------- */
 .footer {
-  background: #382E2F;
-  color: #DDD4D5;
+  background: var(--deep-navy);
+  color: var(--navy-text-light);
   padding: 56px 0 28px;
   position: relative;
 }
@@ -1695,16 +1803,16 @@ h1, h2, h3, h4, h5, h6 {
 
 .footer-brand-title {
   font-family: var(--font-heading);
-  font-size: 1.4rem;
-  font-weight: 700;
+  font-size: 1.45rem;
+  font-weight: 800;
   color: #FFFFFF;
   margin-bottom: 10px;
 }
 
 .footer-brand-desc {
-  font-size: 0.9rem;
-  color: #B8ACAD;
-  line-height: 1.6;
+  font-size: 0.92rem;
+  color: var(--navy-text-muted);
+  line-height: 1.62;
   max-width: 320px;
 }
 
@@ -1723,20 +1831,20 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .footer-link {
-  font-size: 0.9rem;
-  color: #B8ACAD;
+  font-size: 0.92rem;
+  color: var(--navy-text-muted);
   transition: color var(--transition-fast);
 }
 
 .footer-link:hover {
-  color: var(--pastel-pink);
+  color: var(--soft-blush);
 }
 
 .footer-contact-list {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
 }
 
 .footer-contact-item {
@@ -1752,8 +1860,8 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
-  font-size: 0.84rem;
-  color: #9C8F90;
+  font-size: 0.85rem;
+  color: var(--navy-text-muted);
 }
 
 /* --------------------------------------------------------------------------
@@ -1765,14 +1873,14 @@ h1, h2, h3, h4, h5, h6 {
   bottom: 0;
   left: 0;
   width: 100%;
-  background: rgba(255, 255, 255, 0.96);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  padding: 10px 16px;
-  box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.08);
-  border-top: 1px solid var(--pink-border);
-  z-index: 99;
-  transition: transform 0.3s ease;
+  background: rgba(255, 252, 245, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 10px 16px calc(10px + env(safe-area-inset-bottom, 0px));
+  box-shadow: 0 -4px 20px rgba(73, 56, 58, 0.1);
+  border-top: 1.5px solid var(--soft-blush-border);
+  z-index: 999;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .sticky-mobile-cta.hidden {
@@ -1782,30 +1890,37 @@ h1, h2, h3, h4, h5, h6 {
 .sticky-cta-content {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 12px;
   max-width: 480px;
   margin: 0 auto;
 }
 
 .sticky-call-btn {
-  width: 46px;
-  height: 46px;
-  min-width: 46px;
+  width: 48px;
+  height: 48px;
+  min-width: 48px;
   border-radius: 50%;
-  background: var(--pink-card-bg);
-  border: 1.5px solid var(--soft-pink);
-  color: var(--text-dark);
+  background: var(--coral-pink-light);
+  border: 1.5px solid var(--soft-blush);
+  color: var(--dark-cocoa);
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 1.2rem;
-  box-shadow: var(--shadow-subtle);
+  font-size: 1.25rem;
+  box-shadow: 0 2px 6px rgba(73, 56, 58, 0.1);
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.sticky-call-btn:active {
+  transform: scale(0.95);
+  background: var(--soft-blush);
 }
 
 .sticky-book-btn {
   flex: 1;
-  min-height: 46px;
-  font-size: 0.96rem;
+  min-height: 48px;
+  font-size: 1rem;
+  font-weight: 700;
 }
 
 /* --------------------------------------------------------------------------
@@ -1814,7 +1929,7 @@ h1, h2, h3, h4, h5, h6 {
 .privacy-modal {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(16, 35, 49, 0.6);
   backdrop-filter: blur(4px);
   z-index: 1001;
   display: none;
@@ -1828,7 +1943,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .privacy-modal-dialog {
-  background: #FFFFFF;
+  background: var(--warm-white);
   border-radius: var(--radius-lg);
   max-width: 600px;
   width: 100%;
@@ -1837,17 +1952,18 @@ h1, h2, h3, h4, h5, h6 {
   padding: 30px;
   box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
   position: relative;
+  border: 2px solid var(--paper-border);
 }
 
 .privacy-modal-title {
   font-size: 1.4rem;
   margin-bottom: 16px;
-  color: var(--text-dark);
+  color: var(--dark-cocoa);
 }
 
 .privacy-modal-body {
-  font-size: 0.92rem;
-  color: var(--text-body);
+  font-size: 0.94rem;
+  color: var(--cocoa-body);
   line-height: 1.65;
 }
 
@@ -1860,7 +1976,7 @@ h1, h2, h3, h4, h5, h6 {
   top: 18px;
   right: 18px;
   font-size: 1.4rem;
-  color: var(--text-muted);
+  color: var(--cocoa-muted);
   cursor: pointer;
 }
 
@@ -1906,10 +2022,6 @@ h1, h2, h3, h4, h5, h6 {
     gap: 36px;
   }
 
-  .hero-title {
-    font-size: 2.45rem;
-  }
-
   .nav-links {
     gap: 18px;
   }
@@ -1930,14 +2042,6 @@ h1, h2, h3, h4, h5, h6 {
     grid-template-columns: 1fr 1fr;
     gap: 28px;
     align-items: center;
-  }
-
-  .hero-title {
-    font-size: 2.2rem;
-  }
-
-  .hero-description {
-    font-size: 1.02rem;
   }
 
   .nav-links {
@@ -2098,18 +2202,18 @@ h1, h2, h3, h4, h5, h6 {
     padding: 20px 0 36px;
   }
 
-  .hero-blob-1 {
-    width: 260px;
-    height: 260px;
+  .hero-sunlight-wash {
+    width: 320px;
+    height: 320px;
     top: -5%;
-    left: -15%;
+    right: -15%;
   }
 
-  .hero-blob-2 {
-    width: 280px;
-    height: 280px;
+  .hero-blush-wash {
+    width: 260px;
+    height: 260px;
     bottom: -5%;
-    right: -15%;
+    left: -15%;
   }
 
   .hero-grid {
@@ -2121,26 +2225,6 @@ h1, h2, h3, h4, h5, h6 {
   .hero-content {
     text-align: left;
     gap: 16px;
-  }
-
-  .hero-title {
-    font-size: clamp(1.8rem, 6vw, 2.25rem);
-    line-height: 1.25;
-  }
-
-  .hero-description {
-    font-size: 1rem;
-    line-height: 1.6;
-  }
-
-  .hero-benefits {
-    gap: 10px;
-    margin: 4px 0 8px;
-  }
-
-  .benefit-item {
-    font-size: 0.95rem;
-    gap: 10px;
   }
 
   .hero-actions {
@@ -2170,10 +2254,6 @@ h1, h2, h3, h4, h5, h6 {
   .lead-card {
     padding: 26px 20px;
     border-radius: var(--radius-lg);
-  }
-
-  .lead-card-title {
-    font-size: 1.45rem;
   }
 
   .form-row {
@@ -2257,13 +2337,6 @@ h1, h2, h3, h4, h5, h6 {
     gap: 12px;
   }
 
-  .why-check-icon {
-    width: 24px;
-    height: 24px;
-    min-width: 24px;
-    font-size: 0.85rem;
-  }
-
   .reviews-grid {
     grid-template-columns: 1fr;
     gap: 16px;
@@ -2281,10 +2354,6 @@ h1, h2, h3, h4, h5, h6 {
   .location-card {
     padding: 26px 20px;
     border-radius: var(--radius-lg);
-  }
-
-  .location-title {
-    font-size: 1.55rem;
   }
 
   .location-actions {
@@ -2328,15 +2397,6 @@ h1, h2, h3, h4, h5, h6 {
   .final-cta-card {
     padding: 38px 20px;
     border-radius: var(--radius-lg);
-  }
-
-  .final-cta-title {
-    font-size: 1.7rem;
-  }
-
-  .final-cta-text {
-    font-size: 0.98rem;
-    margin-bottom: 22px;
   }
 
   .final-cta-actions {
@@ -2401,10 +2461,6 @@ h1, h2, h3, h4, h5, h6 {
 
   .header-phone span:last-child {
     display: none; /* Hide phone text, keep icon */
-  }
-
-  .hero-title {
-    font-size: clamp(1.72rem, 7vw, 2.1rem);
   }
 
   .lead-card {
@@ -2477,22 +2533,6 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 1.05rem;
   }
 
-  .hero-title {
-    font-size: 1.62rem;
-  }
-
-  .highlight-pink {
-    padding: 0 5px;
-  }
-
-  .hero-description {
-    font-size: 0.94rem;
-  }
-
-  .section-title {
-    font-size: 1.45rem;
-  }
-
   .section-badge {
     font-size: 0.76rem;
     padding: 5px 12px;
@@ -2500,14 +2540,6 @@ h1, h2, h3, h4, h5, h6 {
 
   .lead-card {
     padding: 18px 12px;
-  }
-
-  .lead-card-title {
-    font-size: 1.32rem;
-  }
-
-  .lead-card-subtitle {
-    font-size: 0.86rem;
   }
 
   .form-input, .form-select, .form-textarea {
@@ -2569,7 +2601,7 @@ h1, h2, h3, h4, h5, h6 {
   /* On touch devices, gallery items show badge clearly without hover */
   .gallery-overlay {
     opacity: 1;
-    background: linear-gradient(180deg, transparent 65%, rgba(45, 37, 37, 0.65) 100%);
+    background: linear-gradient(180deg, transparent 65%, rgba(16, 35, 49, 0.75) 100%);
   }
 
   .gallery-overlay-badge {

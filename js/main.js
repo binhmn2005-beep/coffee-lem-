@@ -351,7 +351,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const img = item.querySelector('.gallery-img');
         if (img) {
           lightboxImg.src = img.src;
-          lightboxImg.alt = img.alt || 'Lem Coffee Hà Nội';
+          lightboxImg.alt = img.alt || 'Coffee Mèo Hải Phòng';
           lightboxModal.classList.add('active');
           document.body.style.overflow = 'hidden';
         }
